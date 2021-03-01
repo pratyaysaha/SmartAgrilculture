@@ -1,17 +1,17 @@
 #include<arduino.h>
 #include<ESP8266WiFi.h>
 #include<PubSubClient.h>
-
+#include"config.h"
+#include<DHT.h>
 
 //constants
-const char* ssid ="pratyay";
-const char* pass ="26324926";
-const char* mqtt_broker= "192.168.0.58";
-const int port =1882;
+//In Config file
 
 //globals
 WiFiClient wificlient;
 PubSubClient client(wificlient);
+DHT dht(DHTPIN,DHT11);
+
 
 int soilMoist=100; // dummy 
 int temp=0; //dummy
