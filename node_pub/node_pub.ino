@@ -12,10 +12,6 @@ WiFiClient wificlient;
 PubSubClient client(wificlient);
 DHT dht(DHTPIN,DHT11);
 
-
-int soilMoist=100; // dummy 
-int temp=0; //dummy
-
 //Wifi connection Function
 void wifi_connect()
 {
@@ -64,20 +60,38 @@ void loop()
     client.loop();
 
 
-    //add the code for soil moisture sensor, DHT data acquisation
-    //here
-    //client.publish("node1/soilMoisture",cstr);
-    //client.publish("node1/temp",cstr);
+    //Humidity and temperature data
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
+    Serial.print("Humidity: ");
+    Serial.print(h);
+    Serial.println(" %");
+    Serial.print("Temperature: ");
+    Serial.print(t);
+    Serial.println(" *C");
 
+    // Soil moisture data
+    int soilMoisture=analogRead(0);
+    soilMoisture=map(soilMoisture,890,670,0,100);  //Data to be calibarated for mapping purpose.
+    Serial.print("Soil Moisture Percentage : ");
+    Serial.print(soilMoisture);
+    Serial.println("%");
 
-    //dummy code for debug
-    char cstr[100];
-    itoa(soilMoist,cstr,10);
-    client.publish("node1/soilMoisture",cstr);
-    itoa(temp,cstr,10);
-    client.publish("node1/temp",cstr);
-    soilMoist++;
-    temp++;
+   //Publishing into MQTT server
+    if(!client.publish("node1/humidity",String(h).c_str()))
+    {
+        Serial.println("Humidity Data not published");
+    }
+    if(!client.publish("node1/temperature",String(t).c_str()))
+    {
+        Serial.println("Temperature Data not published");
+    }
+    if(!client.publish("node1/soilMoisture",String(soilMoisture).c_str()))      
+    {
+        Serial.println("Soil Moisture data published");
+    }
+    
+
 
     //optional delay 
     delay(2000);
