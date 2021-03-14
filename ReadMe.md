@@ -16,7 +16,7 @@ This project aims at creating a decision system incorporating the factors throug
 ### Crop Health Detection 
 The crop health is an essential parameter to know what stages of growth the crop is and how is the health of the crop at that stage. Crop health is assessed with the use of hyperspectral imaging by several vegetation indices like NDVI and EVI . The images are processed into a number and that number states the crop health in accordance with the index. This project uses NDVI. It is a simple graphical tool that uses the Near Infrared and Red spectrum. The index is provided below. 
 
-![Image of NDVI Values](https://www.google.com/url?sa=i&url=https%3A%2F%2Fphenospex.com%2Fblog%2Fdigital-disease-quantification-in-plants-a-tailored-method%2Fplants%2F&psig=AOvVaw3Bl3foTMEubE3TvEKKEJ__&ust=1615826871431000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDC8qmesO8CFQAAAAAdAAAAABAJ)
+![Image of NDVI Values](https://phenospex.com/wp-content/uploads/2019/10/plants.png)
 
 ### Pest infestation warning and alert
 -----To be Provided ----------
