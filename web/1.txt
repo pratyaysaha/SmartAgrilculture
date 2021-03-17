@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Portal </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="heading_samanta">Heading</div>
+    <div class="page">
+        <div class="left">
+            <div class="achutya_box">
+                <input type="text" name="" id="yo" placeholder="Enter Length">
+                <input type="text" name="" id="yo" placeholder="Enter Breadth">
+                <input type="text" name="" id="yo" placeholder="Enter Crop">
+                <input type="text" name="" id="yo" placeholder="Enter Region">
+                <input type="text" name="" id="yo" placeholder="Enter Season">
+            </div>
+        </div>
+        <div class="right">
+            <div class="container">
+                <div class="card">
+                    <div class="heading">Irrigation</div>
+                    <div class="circle"></div>
+                </div>
+                <div class="card">
+                    <div class="heading">NDVI</div>
+                </div>
+                <div class="card">
+                    <div class="heading">Pest</div>
+                    <!-- <div class="btn-ctn"> -->
+                    <button>
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <p>Upload</p>
+                    </button>
+                </div>
+
+                <div class="card card2">
+                    <div class="heading">Today's Weather</div>
+                </div>
+                <div class="card card2 card-last">
+                    <div class="heading">Tomorrow Weather Prediction</div>
+                </div>
+                <!-- </div> -->
+            </div>
+            <!-- <div class="container-2">
+                <div class="card card2">
+                    <div class="heading">Heading</div>
+                </div>
+                <div class="card card2">
+                    <div class="heading">Heading</div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <svg>
+        <def>
+            <filter id="goo">
+                <feGaussianBlur stdDeviation="10" />
+                <feColorMatrix values=" 1 0 0 0 0
+                                        0 1 0 0 0
+                                        0 0 1 0 0
+                                        0 0 0 100 -15" />
+                <feBlend in="SourceGraphic" />
+            </filter>
+        </def>
+    </svg>
+
+</body>
+
+</html>
