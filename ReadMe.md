@@ -1,5 +1,5 @@
 # Smart Agriculture Project
-A project of 
+
 
 
 ## Abstract 
