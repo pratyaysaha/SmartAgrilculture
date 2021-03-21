@@ -3,7 +3,7 @@ import json
 import requests
 # Create your views here.
 
-API_KEY="e10945655a16f4e6aceacf3158bd8952"
+
 
 #Page routes
 def home(response):
