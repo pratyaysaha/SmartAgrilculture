@@ -3,7 +3,7 @@ import json
 import requests
 # Create your views here.
 
-API_KEY="Your API Key"
+API_KEY="e10945655a16f4e6aceacf3158bd8952"
 
 #Page routes
 def home(response):
@@ -41,3 +41,20 @@ def getWeatherAPI(response):
         
     return HttpResponse("{'status':'unknown'}", content_type="application/json")
 
+def getAllWeatherAPI(response):
+    if response.method == "POST":
+        lat=response.POST['lat']
+        lon=response.POST['lon']
+        print(lat,lon)
+        url = "http://api.openweathermap.org/data/2.5/onecall?"
+        data = {
+            'lat': lat,
+            'lon': lon,
+            'appid': API_KEY,
+            'units': "metric"
+        }
+        r = requests.get(url=url, params=data)
+        context=json.dumps(r.json())
+        return HttpResponse(context, content_type="application/json")
+        
+    return HttpResponse("{'status':'unknown'}", content_type="application/json")

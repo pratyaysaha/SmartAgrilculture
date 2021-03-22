@@ -4,7 +4,7 @@
     padding-top: 20px;
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 100%;
 }
 .cur-container
 {
@@ -54,4 +54,41 @@
 .main-temp
 {
     font-size: 30px;
+}
+.wea-container
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-right:30px;
+}
+.wea-header
+{
+    font-size: 24px;
+    color: white
+}
+.wea-params
+{
+    padding-top: 20px;
+}
+.wea-param
+{
+    color: white;
+    display: flex;
+    align-items: center;
+}
+.wea-param > div 
+{
+    padding-right:30px;
+}
+.temp-hilo
+{
+    font-size: 18px;
+    width: 30%;
+}
+.temp-status
+{
+    font-size: 15px;
 }

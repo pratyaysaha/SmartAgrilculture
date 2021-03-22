@@ -2,11 +2,10 @@
 {% block content %}
 
 
-<link rel="stylesheet" href="/static/css/weather.css">
+<link rel="stylesheet" href="/static/css/weather1.css">
 <div class="we-container">
     <div class="cur-container">
         <div class="we-loc">
-           
         </div>
         <div class="we-loc-det">
             
@@ -19,21 +18,45 @@
             </div>
         </div>
         <div class="we-params">
-            
         </div>
     </div>
+    <div class="wea-container">
+        <div class="wea-header">
+            8-day Forecast
+        </div>
+        <div class="wea-params">
+            
+        </div>
 </div>
 
 <script>
-
     
+    const TimeConv=(unix_time)=>
+    {
+        var whole_date=new Date(unix_time*1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var day=whole_date.getDate();
+        var month=whole_date.getMonth();
+        var year=whole_date.getFullYear();
+        var day_month=day+" "+months[month];
+        var date=day+"/"+(parseInt(month)+1).toString()+"/"+year
+        var time=whole_date.toLocaleTimeString()
+        console.log(time);
+        return {
+            "day_month": day_month,
+            "date_ddmmyyy":date,
+            "time":time
+        }
+    }
+
+    var fd= new FormData()
+    fd.append('lat',22.77)
+    fd.append('lon',88.32)
+    fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')
     const getWeather= async () =>
     {
         var whole_data={}
-        var fd= new FormData()
-        fd.append('lat',22.77)
-        fd.append('lon',88.32)
-        fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+        
 
         await fetch('/api/getCurWeather',{
         method:"POST",
@@ -92,8 +115,46 @@
 
 
     }
-    window.onload=getWeather()
 
+    const getAllWeather = async () =>
+    {
+        var whole_data=[]
+        await fetch('/api/getAllWeather',{
+        method:"POST",
+        body:fd
+        }).then(response=>response.json())
+            .then(data => {console.log(data)
+                            whole_data=data.daily})
+        console.log(whole_data)
+        whole_data.map((item,index)=>
+        {
+            var temp=item.temp
+            var feels_like=item.feels_like
+            var dstatus=item.weather[0]
+            var h=TimeConv(item.dt)
+            document.querySelector(".wea-params")
+            .innerHTML+= `<div class="wea-param" key={index}>
+                            <div class="wea-date">
+                                ${h.day_month}
+                            </div>
+                            <div class="status-img"> 
+                                <img src="http://openweathermap.org/img/wn/${dstatus.icon}.png"/>
+                            </div>
+                            <div class="temp-hilo">
+                                ${temp.max} / ${temp.min} ˚C
+                            </div>
+                            <div class="temp-status">
+                                ${dstatus.description}
+                            </div>
+                        </div>`
+
+        })
+        
+
+    }
+
+    window.onload=getWeather()
+    window.onload=getAllWeather()
         
     
 
