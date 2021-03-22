@@ -1,0 +1,57 @@
+.we-container
+{
+    padding-left: 40px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+.cur-container
+{
+    width: 90%;
+}
+.we-loc
+{
+    color: white;
+    font-size: 30px;
+}
+.we-loc-det
+{
+    color:white;
+    padding-top: 10px;
+}
+
+.we-desc
+{
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
+.we-dec-info
+{
+    display: flex;
+    flex-direction: row;
+
+}
+.we-params
+{
+    color: white;
+    width: 60%;
+}
+.we-param
+{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-size: 18px;
+
+}
+.param-title
+{
+    color:darksalmon;
+}
+.main-temp
+{
+    font-size: 30px;
+}

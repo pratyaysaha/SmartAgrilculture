@@ -3,7 +3,7 @@ import json
 import requests
 # Create your views here.
 
-API_KEY="e10945655a16f4e6aceacf3158bd8952"
+API_KEY="Your API Key"
 
 #Page routes
 def home(response):
@@ -25,11 +25,13 @@ def weather(response):
 #API for current Weather 
 def getWeatherAPI(response):
     if response.method == "POST":
-        city=response.POST['city']
-        print(city)
+        lat=response.POST['lat']
+        lon=response.POST['lon']
+        print(lat,lon)
         url = "http://api.openweathermap.org/data/2.5/weather?"
         data = {
-            'q': city,
+            'lat': lat,
+            'lon': lon,
             'appid': API_KEY,
             'units': "metric"
         }

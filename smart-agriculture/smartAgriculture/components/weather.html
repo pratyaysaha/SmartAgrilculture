@@ -2,4 +2,104 @@
 {% block content %}
 
 
+<link rel="stylesheet" href="/static/css/weather.css">
+<div class="we-container">
+    <div class="cur-container">
+        <div class="we-loc">
+           
+        </div>
+        <div class="we-loc-det">
+            
+        </div>
+        <div class="we-desc">
+            <span class="we-img"></span>
+            <div class="we-desc-info">
+                <div class="main-temp"></div>
+                <div class="main-status"></div>
+            </div>
+        </div>
+        <div class="we-params">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+
+    
+    const getWeather= async () =>
+    {
+        var whole_data={}
+        var fd= new FormData()
+        fd.append('lat',22.77)
+        fd.append('lon',88.32)
+        fd.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+
+        await fetch('/api/getCurWeather',{
+        method:"POST",
+        body:fd
+        }).then(response=>response.json())
+            .then(data => {console.log(data)
+                            whole_data=data})
+        console.log(whole_data)
+        coordinates=whole_data.coord
+        curweather=whole_data.main
+        var status=whole_data.weather[0]
+        wind=whole_data.wind
+
+        const we_data = [
+        {
+            title: "Max Temp",
+            content: `${curweather.temp_max} ˚C`
+        },
+        {
+            title: "Min Temp",
+            content: `${curweather.temp_min} ˚C`
+        },
+        {
+            title: "Feels Like ",
+            content: `${curweather.feels_like} ˚C`
+        },
+        {
+            title: "Humidity",
+            content: `${curweather.humidity}%`
+        },
+        {
+            title: "Pressure",
+            content: `${curweather.pressure} hPa`
+        },
+        {
+            title: "Wind Speed",
+            content: `${wind.speed}`
+        },
+        {
+            title: "Wind Flow Degree",
+            content: `${wind.deg}`
+        }
+    ]
+
+        document.querySelector(".we-loc").innerHTML=`${whole_data.name}`
+        document.querySelector(".we-loc-det").innerHTML=`Coordinates : ${coordinates.lat}, ${coordinates.lon}`
+        document.querySelector(".main-temp").innerHTML=`${curweather.temp} ˚C`
+        document.querySelector(".main-status").innerHTML=`${status.main}`
+        document.querySelector(".we-img").innerHTML=`<img src="http://openweathermap.org/img/wn/${status.icon}@2x.png"/>`
+        we_data.map((item, index)=>{
+            document.querySelector(".we-params").innerHTML+= `<li key=${index} class="we-param">
+                                                                <span class="param-title">${item.title}</span>
+                                                                <span class="param-content">${item.content}</span>
+                                                             </li>`
+        })
+
+
+    }
+    window.onload=getWeather()
+
+        
+    
+
+
+    
+    
+</script>
+
 {% endblock content %}
