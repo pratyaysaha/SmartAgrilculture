@@ -54,6 +54,10 @@ body
 {
     font-size: 20px;
 }
+.content-container
+{
+    display: flex;
+}
 
 .sidebar
 {

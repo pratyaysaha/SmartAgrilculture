@@ -3,24 +3,24 @@ import json
 import requests
 # Create your views here.
 
-
+API_KEY="e10945655a16f4e6aceacf3158bd8952"
 
 #Page routes
 def home(response):
     return render(response,"index.html")
 
 def irrigation(response):
-    return HttpResponse("This is irrigation")
+    return render(response,"irrigation.html")
 
 
 def cropHealth(response):
-    return HttpResponse("This is crop health")
+    return render(response,"cropHealth.html")
 
 def diseaseDetection(response):
-    return HttpResponse("This is disease detection")
+    return render(response,"disease.html")
 
 def weather(response):
-    return HttpResponse("This is weather")
+    return render(response,"weather.html")
 
 #API for current Weather 
 def getWeatherAPI(response):
