@@ -8,7 +8,7 @@
 }
 .cur-container
 {
-    width: 90%;
+    width: 85%;
 }
 .we-loc
 {
@@ -42,6 +42,7 @@
 .we-param
 {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     padding-top: 20px;
     font-size: 18px;
@@ -77,11 +78,27 @@
 {
     color: white;
     display: flex;
+    flex-direction: column;
+}
+.wea-content
+{
+    display: flex;
     align-items: center;
 }
-.wea-param > div 
+.wea-param:hover
+{
+    background-color: rgba(36, 35, 36,0.7);
+    cursor: pointer;
+    
+}
+.wea-content > div 
 {
     padding-right:30px;
+}
+.wea-date
+{
+    padding-left: 10px;
+    
 }
 .temp-hilo
 {
@@ -91,4 +108,31 @@
 .temp-status
 {
     font-size: 15px;
+}
+.wea-details
+{
+    padding: 10px;
+    display: none;
+    transition: ease-out 0.2s;
+    flex-direction: row;
+}
+
+.wea-details-left, .wea-details-right
+{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 50%;
+}
+.det-left, .det-right
+{
+    display: flex;
+    justify-content: space-between;   
+}
+.det-left > div, .det-right > div {
+    padding: 10px 20px 0px 0px;
+}
+.det-left > :first-child , .det-right > :first-child
+{
+    color:darksalmon;
 }

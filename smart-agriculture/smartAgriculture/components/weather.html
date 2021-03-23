@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<link rel="stylesheet" href="/static/css/weather1.css">
+<link rel="stylesheet" href="/static/css/weather2.css">
 <div class="we-container">
     <div class="cur-container">
         <div class="we-loc">
@@ -28,6 +28,12 @@
             
         </div>
 </div>
+
+
+
+
+
+
 
 <script>
     
@@ -112,10 +118,20 @@
                                                                 <span class="param-content">${item.content}</span>
                                                              </li>`
         })
-
-
     }
 
+    const statechange = (index,state) =>
+    {
+        if (state==0)
+        {
+            document.getElementsByClassName('wea-param')[index].querySelector(".wea-details").style.display="flex"
+        }
+        if(state==1)
+        {
+            document.getElementsByClassName('wea-param')[index].querySelector(".wea-details").style.display="none"
+
+        }
+    }
     const getAllWeather = async () =>
     {
         var whole_data=[]
@@ -133,7 +149,8 @@
             var dstatus=item.weather[0]
             var h=TimeConv(item.dt)
             document.querySelector(".wea-params")
-            .innerHTML+= `<div class="wea-param" key={index}>
+            .innerHTML+= `<div class="wea-param" key=${index} onmouseover="statechange(${index},0)" onmouseout="statechange(${index},1)">
+                        <div class='wea-content'>
                             <div class="wea-date">
                                 ${h.day_month}
                             </div>
@@ -144,9 +161,38 @@
                                 ${temp.max} / ${temp.min} ˚C
                             </div>
                             <div class="temp-status">
-                                ${dstatus.description}
+                                ${dstatus.main}
                             </div>
-                        </div>`
+                        </div>
+                        <div class="wea-details">
+                            <div class="wea-details-left">
+                                <div class="det-left">
+                                    <div>Sunrise</div>
+                                    <div>${TimeConv(item.sunrise).time}</div>
+                                </div>
+                                <div class="det-left">
+                                    <div>Sunset</div>
+                                    <div>${TimeConv(item.sunset).time}</div>
+                                </div>
+                                <div class="det-left">
+                                    <div>Humidity</div>
+                                    <div>${item.humidity}%</div>
+                                 </div>
+                            </div>
+                            <div class="wea-details-right">
+       
+                                <div class="det-right">
+                                    <div>Pressure</div>
+                                    <div>${item.pressure}</div>
+                                </div>
+                                <div class="det-right">
+                                    <div>Rainfall Chances</div>
+                                    <div>${item.pop}</div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>`
 
         })
         

@@ -62,7 +62,7 @@ body
 .sidebar
 {
     
-    width:25%;
+    width:20%;
     height: 80vh;
     
 }
@@ -86,7 +86,7 @@ body
     justify-content: start;
     align-items: center;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 20px;
     height: 50px;
     padding: 20px;
     color: white;
