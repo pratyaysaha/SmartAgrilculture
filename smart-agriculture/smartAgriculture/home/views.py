@@ -4,6 +4,9 @@ import requests
 # Create your views here.
 
 API_KEY="e10945655a16f4e6aceacf3158bd8952"
+AGRO_API_KEY="1f8a0e19b649560f257d5009cb66258e"
+default_polid="6044e4960573db290cc1c44b"
+
 
 #Page routes
 def home(response):
@@ -21,6 +24,12 @@ def diseaseDetection(response):
 
 def weather(response):
     return render(response,"weather.html")
+
+def login(response):
+    return render(response,"login.html")
+
+def signup(response):
+    return render(response,'signup.html')
 
 #API for current Weather 
 def getWeatherAPI(response):
@@ -58,3 +67,38 @@ def getAllWeatherAPI(response):
         return HttpResponse(context, content_type="application/json")
         
     return HttpResponse("{'status':'unknown'}", content_type="application/json")
+
+#API for historical NDVI data
+def getNDVIAPI(response):
+    if response.method=='POST':
+        startDate=response.POST['startDate']
+        endDate=response.POST['endDate']
+        polygonId=response.POST['polid']
+        print(startDate,endDate)
+        url="http://api.agromonitoring.com/agro/1.0/ndvi/history?"
+        data={
+            'polyid':default_polid,
+            'start':startDate,
+            'end':endDate,
+            'appid':AGRO_API_KEY
+        }
+        r=requests.get(url=url,params=data)
+        context=json.dumps(r.json())
+        return HttpResponse(context,content_type="application/json")
+    return HttpResponse("{'status':'unknown'}",content_type='application/json')
+
+def createNewUser(response):
+    if response.method=='POST':
+        fname=response.POST['fname']
+        lname=response.POST['lname']
+        username=response.POST['username']
+        password=response.POST['password']
+        email=response.POST['email']
+        print(fname,lname,username,password,email)
+        context={'status': 'success'}
+        context=json.dumps(context)
+        return HttpResponse(context,content_type='application/json')
+    return HttpResponse(json.dumps("{'status': 'forbidden'}"),content_type='application/json')
+    
+
+
