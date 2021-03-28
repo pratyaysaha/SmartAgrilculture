@@ -13,5 +13,6 @@ urlpatterns = [
     path('api/getCurWeather',views.getWeatherAPI,name="CurWeatherAPI"),
     path('api/getAllWeather',views.getAllWeatherAPI,name="AllWeatherAPI"),
     path('api/getNdvi',views.getNDVIAPI,name="NdviAPI"),
+    path('api/getIrrigationData',views.getIrrigationData,name="IrrigationAPI"),
     path('api/createNewUser',views.createNewUser,name="New User"),
 ]

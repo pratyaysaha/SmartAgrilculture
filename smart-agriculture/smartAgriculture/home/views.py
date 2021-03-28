@@ -1,12 +1,21 @@
 from django.shortcuts import render,HttpResponse
 import json
+from pymongo import database
+from pymongo.message import _convert_write_result
 import requests
+import pymongo as mongo
 # Create your views here.
 
 API_KEY="e10945655a16f4e6aceacf3158bd8952"
 AGRO_API_KEY="1f8a0e19b649560f257d5009cb66258e"
 default_polid="6044e4960573db290cc1c44b"
 
+connection_string="mongodb://localhost:27017/"
+
+
+dbclient=mongo.MongoClient(connection_string)
+db=dbclient["AgrilData"]
+col=db["allData"]
 
 #Page routes
 def home(response):
@@ -101,4 +110,17 @@ def createNewUser(response):
     return HttpResponse(json.dumps("{'status': 'forbidden'}"),content_type='application/json')
     
 
+def getIrrigationData(response):
+    if response.method=='POST':
+        dataList=[]
+        sensor=response.POST['sensor']
+        sensor='node1/'+sensor
+        print(sensor)
+        for item in col.find({"sensor" : sensor},{'_id' : 0}):
+            dataList.append(item)
+        print(dataList)
+        context={"data" : dataList}
+        print(context)
+        return HttpResponse(json.dumps(context),content_type='application/json')
 
+    return HttpResponse(json.dumps("{'status': 'forbidden'}"),content_type='application/json')

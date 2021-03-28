@@ -2,7 +2,7 @@
 {
     width: 100%;
     padding-left: 50px;
-    padding-top: 40px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
 }
@@ -12,6 +12,7 @@
 }
 .chart
 {
+    padding-top: 20px;
     height: 30%;
     width: 80%;
 }
