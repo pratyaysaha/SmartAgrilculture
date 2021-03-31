@@ -19,7 +19,7 @@ col=db["allData"]
 
 #Page routes
 def home(response):
-    return render(response,"index.html")
+    return render(response,"overview.html")
 
 def irrigation(response):
     return render(response,"irrigation.html")

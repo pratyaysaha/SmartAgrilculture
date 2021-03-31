@@ -16,7 +16,7 @@ body
 {
     display: flex;
     justify-content: space-between;
-    height: 100px
+    height: 100px;
     
 }
 .left
@@ -106,4 +106,14 @@ body
 {
     width: 75%;
     
+}
+
+.footnote
+{
+    width: 100%;
+    background-color:rgb(30, 71, 131);
+    padding : 15px 0px 15px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
