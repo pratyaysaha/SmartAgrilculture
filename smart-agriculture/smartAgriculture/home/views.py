@@ -10,7 +10,7 @@ API_KEY="e10945655a16f4e6aceacf3158bd8952"
 AGRO_API_KEY="1f8a0e19b649560f257d5009cb66258e"
 default_polid="6044e4960573db290cc1c44b"
 
-connection_string="mongodb://localhost:27017/"
+connection_string="mongodb+srv://admin:admin@cluster0.1rhlu.mongodb.net/"
 
 
 dbclient=mongo.MongoClient(connection_string)
