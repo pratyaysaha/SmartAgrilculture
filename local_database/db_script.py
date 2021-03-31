@@ -9,7 +9,7 @@ port=1880
 connection_string="mongodb://192.168.0.58:1990/"
 
 
-dbclient=mongo.MongoClient(connection_string)
+dbclient=mongo.MongoClient(connection_string)   
 db=dbclient["AgrilData"]
 col=db["allData"]
 
