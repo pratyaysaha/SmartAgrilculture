@@ -3,9 +3,5 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.languageServer": "Pylance",
-    "python.linting.pylintArgs": [
-        "--load-plugins",
-        "pylint_django"
-    ],
-    "cmake.configureOnOpen": false
+    "python.linting.pylintArgs": ["--load-plugins", "pylint_django"]
 }

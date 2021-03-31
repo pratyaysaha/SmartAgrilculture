@@ -4,6 +4,10 @@ from pymongo import database
 from pymongo.message import _convert_write_result
 import requests
 import pymongo as mongo
+from django.core.files.storage import FileSystemStorage
+#import disease.ML
+
+
 # Create your views here.
 
 API_KEY="e10945655a16f4e6aceacf3158bd8952"
@@ -29,6 +33,16 @@ def cropHealth(response):
     return render(response,"cropHealth.html")
 
 def diseaseDetection(response):
+    """
+    if response.method == 'POST':
+        uploaded_file = response.FILES['document']
+        fs= FileSystemStorage()
+        fs.save(uploaded_file.name,uploaded_file)
+        disease.ML.makecsv(uploaded_file.name)
+        data,perc=disease.ML.test_image()
+        result=str(data)+" with "+str("{:.2f}".format(perc))+" % assurance"
+        return render(response,"disease.html", {'content':['Status: ',result]})
+    """
     return render(response,"disease.html")
 
 def weather(response):
